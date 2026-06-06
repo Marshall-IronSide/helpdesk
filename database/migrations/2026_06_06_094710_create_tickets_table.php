@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('description');
-            $table->enum('priority', ['low', 'medium', 'high'])->default('medium');
-            $table->enum('status', ['open', 'resolved'])->default('open');
+            $table->string('priority')->default('medium'); // low, medium, high
+            $table->string('status')->default('open');     // open, resolved
             $table->string('email');
             $table->timestamps();
         });
