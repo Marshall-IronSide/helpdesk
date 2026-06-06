@@ -5,9 +5,9 @@
 <div class="page-header">
     <div>
         <div class="page-title">Ticket #{{ $ticket->id }}</div>
-        <div class="page-subtitle">Submitted {{ $ticket->created_at->diffForHumans() }}</div>
+        <div class="page-subtitle">Soumis {{ $ticket->created_at->diffForHumans() }}</div>
     </div>
-    <a href="{{ route('tickets.index') }}" class="btn btn-secondary">← All Tickets</a>
+    <a href="{{ route('tickets.index') }}" class="btn btn-secondary">← Tous les tickets</a>
 </div>
 
 <div class="detail-card">
@@ -32,21 +32,21 @@
         {{-- Meta --}}
         <div class="meta-grid">
             <div class="meta-item">
-                <div class="meta-label">Submitted by</div>
+                <div class="meta-label">Soumis par</div>
                 <div class="meta-value">{{ $ticket->email }}</div>
             </div>
             <div class="meta-item">
-                <div class="meta-label">Created at</div>
+                <div class="meta-label">Créé le</div>
                 <div class="meta-value">{{ $ticket->created_at->format('d M Y, H:i') }}</div>
             </div>
             <div class="meta-item">
-                <div class="meta-label">Priority</div>
+                <div class="meta-label">Priorité</div>
                 <div class="meta-value">
                     <span class="badge badge-{{ $ticket->priority }}">{{ ucfirst($ticket->priority) }}</span>
                 </div>
             </div>
             <div class="meta-item">
-                <div class="meta-label">Status</div>
+                <div class="meta-label">Statut</div>
                 <div class="meta-value">
                     <span class="badge badge-{{ $ticket->status }}">{{ ucfirst($ticket->status) }}</span>
                 </div>
@@ -62,13 +62,13 @@
             @csrf
             @method('PATCH')
             <button type="submit" class="btn btn-success">
-                ✅ Mark as Resolved
+                ✅ Marquer comme résolu
             </button>
         </form>
     </div>
     @else
     <div class="detail-footer" style="color:var(--muted); font-size:0.875rem;">
-        ✓ This ticket was resolved on {{ $ticket->updated_at->format('d M Y, H:i') }}
+        ✓ Ce ticket a été résolu le {{ $ticket->updated_at->format('d M Y, H:i') }}
     </div>
     @endif
 

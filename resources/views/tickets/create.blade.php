@@ -4,10 +4,10 @@
 
 <div class="page-header">
     <div>
-        <div class="page-title">New Ticket</div>
-        <div class="page-subtitle">Describe your issue and we'll get back to you</div>
+        <div class="page-title">new ticket</div>
+        <div class="page-subtitle">Décrivez votre problème et nous vous répondrons</div>
     </div>
-    <a href="{{ route('tickets.index') }}" class="btn btn-secondary">← Back</a>
+    <a href="{{ route('tickets.index') }}" class="btn btn-secondary">← Retour</a>
 </div>
 
 <div class="form-card">
@@ -15,12 +15,12 @@
         @csrf
 
         <div class="form-group">
-            <label class="form-label">Your Email</label>
+            <label class="form-label">Votre email</label>
             <input
                 type="email"
                 name="email"
                 class="form-control @error('email') is-invalid @enderror"
-                placeholder="you@example.com"
+                placeholder="vous@exemple.com"
                 value="{{ old('email') }}"
             >
             @error('email')
@@ -29,12 +29,12 @@
         </div>
 
         <div class="form-group">
-            <label class="form-label">Title</label>
+            <label class="form-label">Titre</label>
             <input
                 type="text"
                 name="title"
                 class="form-control @error('title') is-invalid @enderror"
-                placeholder="Short summary of your issue"
+                placeholder="Résumé court de votre problème"
                 value="{{ old('title') }}"
             >
             @error('title')
@@ -47,7 +47,7 @@
             <textarea
                 name="description"
                 class="form-control @error('description') is-invalid @enderror"
-                placeholder="Describe your issue in detail..."
+                placeholder="Décrivez votre problème en détail..."
             >{{ old('description') }}</textarea>
             @error('description')
                 <div class="invalid-feedback">{{ $message }}</div>
@@ -55,17 +55,17 @@
         </div>
 
         <div class="form-group">
-            <label class="form-label">Priority</label>
+            <label class="form-label">Priorité</label>
             <select name="priority" class="form-control">
-                <option value="low"    {{ old('priority') === 'low'    ? 'selected' : '' }}>🟢 Low — Not urgent</option>
-                <option value="medium" {{ old('priority','medium') === 'medium' ? 'selected' : '' }}>🟡 Medium — Needs attention</option>
-                <option value="high"   {{ old('priority') === 'high'   ? 'selected' : '' }}>🔴 High — Urgent issue</option>
+                <option value="low"    {{ old('priority') === 'low'    ? 'selected' : '' }}>🟢 Basse — Non urgent</option>
+                <option value="medium" {{ old('priority','medium') === 'medium' ? 'selected' : '' }}>🟡 Moyenne — Nécessite attention</option>
+                <option value="high"   {{ old('priority') === 'high'   ? 'selected' : '' }}>🔴 Haute — Problème urgent</option>
             </select>
         </div>
 
         <div class="form-actions">
-            <button type="submit" class="btn btn-primary">Submit Ticket →</button>
-            <a href="{{ route('tickets.index') }}" class="btn btn-secondary">Cancel</a>
+            <button type="submit" class="btn btn-primary">Soumettre le ticket →</button>
+            <a href="{{ route('tickets.index') }}" class="btn btn-secondary">Annuler</a>
         </div>
     </form>
 </div>
