@@ -16,4 +16,4 @@ Route::resource('tickets', TicketController::class)->only([
 Route::patch('tickets/{ticket}/resolve', [TicketController::class, 'resolve'])
     ->name('tickets.resolve');
 
-//URL::forceScheme('https');
+URL::forceScheme('https');
