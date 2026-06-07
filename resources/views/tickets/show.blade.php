@@ -16,8 +16,15 @@
     <div class="detail-header">
         <div class="detail-title">{{ $ticket->title }}</div>
         <div style="display:flex; gap:0.5rem; flex-shrink:0;">
-            <span class="badge badge-{{ $ticket->priority }}">{{ $ticket->priority }}</span>
-            <span class="badge badge-{{ $ticket->status }}">{{ $ticket->status }}</span>
+            <span class="badge badge-{{ $ticket->priority }}">{{ 
+                $ticket->priority === 'low' ? 'Basse' : 
+                ($ticket->priority === 'medium' ? 'Moyenne' : 
+                ($ticket->priority === 'high' ? 'Haute' : $ticket->priority))
+            }}</span>
+            <span class="badge badge-{{ $ticket->status }}">{{ 
+                $ticket->status === 'open' ? 'Ouvert' : 
+                ($ticket->status === 'resolved' ? 'Résolu' : $ticket->status)
+            }}</span>
         </div>
     </div>
 
@@ -42,13 +49,20 @@
             <div class="meta-item">
                 <div class="meta-label">Priorité</div>
                 <div class="meta-value">
-                    <span class="badge badge-{{ $ticket->priority }}">{{ ucfirst($ticket->priority) }}</span>
+                    <span class="badge badge-{{ $ticket->priority }}">{{ 
+                        $ticket->priority === 'low' ? 'Basse' : 
+                        ($ticket->priority === 'medium' ? 'Moyenne' : 
+                        ($ticket->priority === 'high' ? 'Haute' : $ticket->priority))
+                    }}</span>
                 </div>
             </div>
             <div class="meta-item">
                 <div class="meta-label">Statut</div>
                 <div class="meta-value">
-                    <span class="badge badge-{{ $ticket->status }}">{{ ucfirst($ticket->status) }}</span>
+                    <span class="badge badge-{{ $ticket->status }}">{{ 
+                        $ticket->status === 'open' ? 'Ouvert' : 
+                        ($ticket->status === 'resolved' ? 'Résolu' : $ticket->status)
+                    }}</span>
                 </div>
             </div>
         </div>
