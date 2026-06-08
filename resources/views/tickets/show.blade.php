@@ -44,7 +44,7 @@
             </div>
             <div class="meta-item">
                 <div class="meta-label">Créé le</div>
-                <div class="meta-value">{{ $ticket->created_at->format('d M Y, H:i') }}</div>
+                <div class="meta-value">{{ \App\Helpers\DateHelper::formatFrench($ticket->created_at, 'd F Y, H:i') }}</div>
             </div>
             <div class="meta-item">
                 <div class="meta-label">Priorité</div>
@@ -82,7 +82,7 @@
     </div>
     @else
     <div class="detail-footer" style="color:var(--muted); font-size:0.875rem;">
-        ✓ Ce ticket a été résolu le {{ $ticket->updated_at->format('d M Y, H:i') }}
+        ✓ Ce ticket a été résolu le {{ \App\Helpers\DateHelper::formatFrench($ticket->updated_at, 'd F Y, H:i') }}
     </div>
     @endif
 
