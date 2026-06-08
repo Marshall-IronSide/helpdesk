@@ -12,5 +12,12 @@ class Ticket extends Model
         'priority',
         'status',
         'email',
+        'user_id',
     ];
+
+    // Relation : un ticket appartient à un user
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

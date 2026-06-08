@@ -432,9 +432,19 @@
         <span class="dot"></span>
         Mini HelpDesk
     </a>
-    <a href="{{ route('tickets.create') }}" class="btn btn-primary">
-        + New Ticket
-    </a>
+    <div style="display:flex; align-items:center; gap:1rem;">
+        <span style="color:#6b7280; font-size:0.85rem;">
+            👤 {{ Auth::user()->name }}
+            @if(Auth::user()->isAdmin())
+                <span style="background:rgba(79,142,247,0.15); color:#4f8ef7; font-size:0.7rem; padding:0.2rem 0.5rem; border-radius:999px; margin-left:0.3rem;">ADMIN</span>
+            @endif
+        </span>
+        <a href="{{ route('tickets.create') }}" class="btn btn-primary btn-sm">+ New Ticket</a>
+        <form method="POST" action="{{ route('logout') }}" style="margin:0;">
+            @csrf
+            <button type="submit" class="btn btn-secondary btn-sm">Déconnexion</button>
+        </form>
+    </div>
 </nav>
 
 <div class="container">
