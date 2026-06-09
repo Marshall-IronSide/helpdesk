@@ -26,4 +26,4 @@ Route::middleware('auth')->group(function () {
 });
 
 
-//URL::forceScheme('https');
+URL::forceScheme('https');
