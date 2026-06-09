@@ -10,7 +10,10 @@ class TicketController extends Controller
 {
     public function index()
     {
-        $tickets = Ticket::latest()->get();
+        $tickets = Auth::user()->isAdmin()
+            ? Ticket::latest()->get()
+            : Ticket::where('user_id', Auth::id())->latest()->get();
+
         return view('tickets.index', compact('tickets'));
     }
 
@@ -37,11 +40,17 @@ class TicketController extends Controller
         ]);
 
         return redirect()->route('tickets.index')
-                         ->with('success', 'Ticket soumis avec succès !');
+            ->with('success', 'Ticket soumis avec succès !');
     }
 
     public function show(Ticket $ticket)
     {
+        // Un user ne peut voir que ses propres tickets
+        if (!Auth::user()->isAdmin() && $ticket->user_id !== Auth::id()) {
+            abort(403);
+        }
+
+        $ticket->load('comments.user');
         return view('tickets.show', compact('ticket'));
     }
 
@@ -73,7 +82,7 @@ class TicketController extends Controller
         ]);
 
         return redirect()->route('tickets.show', $ticket)
-                         ->with('success', 'Ticket modifié avec succès !');
+            ->with('success', 'Ticket modifié avec succès !');
     }
 
     public function resolve(Ticket $ticket)
@@ -85,18 +94,29 @@ class TicketController extends Controller
 
         $ticket->update(['status' => 'resolved']);
         return redirect()->route('tickets.index')
-                         ->with('success', 'Ticket marqué comme résolu.');
+            ->with('success', 'Ticket marqué comme résolu.');
     }
 
     public function destroy(Ticket $ticket)
-{
-    if (!Auth::user()->isAdmin()) {
-        abort(403, 'Action réservée à l\'administrateur.');
+    {
+        if (!Auth::user()->isAdmin()) {
+            abort(403, 'Action réservée à l\'administrateur.');
+        }
+
+        $ticket->delete();
+
+        return redirect()->route('tickets.index')
+            ->with('success', 'Ticket supprimé avec succès.');
     }
 
-    $ticket->delete();
+    public function filtered(string $status)
+    {
+        $tickets = Auth::user()->isAdmin()
+            ? Ticket::where('status', $status)->latest()->get()
+            : Ticket::where('user_id', Auth::id())->where('status', $status)->latest()->get();
 
-    return redirect()->route('tickets.index')
-                     ->with('success', 'Ticket supprimé avec succès.');
-}
+        $label = $status === 'open' ? 'Ouverts' : 'Résolus';
+
+        return view('tickets.filtered', compact('tickets', 'status', 'label'));
+    }
 }
