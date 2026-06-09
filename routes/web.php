@@ -18,11 +18,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/', fn() => redirect()->route('tickets.index'));
 
     Route::resource('tickets', TicketController::class)->only([
-        'index', 'create', 'store', 'show', 'edit', 'update'
+        'index', 'create', 'store', 'show', 'edit', 'update', 'destroy'
     ]);
 
     Route::patch('tickets/{ticket}/resolve', [TicketController::class, 'resolve'])
          ->name('tickets.resolve');
 });
 
-URL::forceScheme('https');
+
+//URL::forceScheme('https');

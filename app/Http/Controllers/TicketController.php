@@ -87,4 +87,16 @@ class TicketController extends Controller
         return redirect()->route('tickets.index')
                          ->with('success', 'Ticket marqué comme résolu.');
     }
+
+    public function destroy(Ticket $ticket)
+{
+    if (!Auth::user()->isAdmin()) {
+        abort(403, 'Action réservée à l\'administrateur.');
+    }
+
+    $ticket->delete();
+
+    return redirect()->route('tickets.index')
+                     ->with('success', 'Ticket supprimé avec succès.');
+}
 }

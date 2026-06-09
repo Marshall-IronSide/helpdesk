@@ -70,27 +70,50 @@
     </div>
 
     {{-- Footer: resolve button --}}
-    @if($ticket->status === 'open')
+@if($ticket->status === 'open')
 <div class="detail-footer" style="display:flex; gap:0.75rem; align-items:center; flex-wrap:wrap;">
 
-    {{-- Bouton modifier : uniquement le propriétaire --}}
     @if(Auth::id() === $ticket->user_id)
         <a href="{{ route('tickets.edit', $ticket) }}" class="btn btn-secondary">✏️ Modifier</a>
     @endif
 
-    {{-- Bouton résoudre : uniquement l'admin --}}
     @if(Auth::user()->isAdmin())
         <form action="{{ route('tickets.resolve', $ticket) }}" method="POST" style="margin:0;">
             @csrf
             @method('PATCH')
             <button type="submit" class="btn btn-success">✅ Marquer comme résolu</button>
         </form>
+
+        <form action="{{ route('tickets.destroy', $ticket) }}" method="POST"
+              onsubmit="return confirm('Confirmer la suppression de ce ticket ?')"
+              style="margin:0;">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="btn" style="background:rgba(239,68,68,0.15); color:#ef4444; border:1px solid rgba(239,68,68,0.3);">
+                🗑️ Supprimer
+            </button>
+        </form>
     @endif
 
 </div>
 @else
-<div class="detail-footer" style="color:var(--muted); font-size:0.875rem;">
-    ✓ Ce ticket a été résolu le {{ $ticket->updated_at->format('d M Y, H:i') }}
+<div class="detail-footer" style="display:flex; gap:0.75rem; align-items:center; flex-wrap:wrap;">
+    <span style="color:var(--muted); font-size:0.875rem;">
+        ✓ Ce ticket a été résolu le {{ $ticket->updated_at->format('d M Y, H:i') }}
+    </span>
+
+    {{-- Admin peut aussi supprimer un ticket résolu --}}
+    @if(Auth::user()->isAdmin())
+        <form action="{{ route('tickets.destroy', $ticket) }}" method="POST"
+              onsubmit="return confirm('Confirmer la suppression de ce ticket ?')"
+              style="margin:0;">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="btn btn-sm" style="background:rgba(239,68,68,0.15); color:#ef4444; border:1px solid rgba(239,68,68,0.3);">
+                🗑️ Supprimer
+            </button>
+        </form>
+    @endif
 </div>
 @endif
 
