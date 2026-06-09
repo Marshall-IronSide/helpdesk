@@ -27,7 +27,7 @@
                 </div>
                 <div>
                     <div class="meta-label">Créé le</div>
-                    <div class="meta-value">{{ $ticket->created_at->format('d M Y, H:i') }}</div>
+                    <div class="meta-value">{{ \App\Helpers\DateHelper::formatFrench($ticket->created_at, 'd F Y, H:i') }}</div>
                 </div>
                 <div>
                     <div class="meta-label">Priorité</div>
@@ -55,7 +55,7 @@
                 @endif
             @else
                 <span style="color:var(--muted);font-size:.875rem;">✓ Résolu le
-                    {{ $ticket->updated_at->format('d M Y, H:i') }}</span>
+                    {{ \App\Helpers\DateHelper::formatFrench($ticket->updated_at, 'd F Y, H:i') }}</span>
             @endif
 
             @if (Auth::user()->isAdmin())
