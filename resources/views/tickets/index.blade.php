@@ -54,8 +54,8 @@
                         </div>
                     </div>
                     <div class="ticket-actions">
-                        <span class="badge badge-{{ $ticket->priority }}">{{ $ticket->priority }}</span>
-                        <span class="badge badge-{{ $ticket->status }}">{{ $ticket->status }}</span>
+                        <span class="badge badge-{{ $ticket->priority }}">{{ \App\Helpers\TicketHelper::translatePriority($ticket->priority) }}</span>
+                        <span class="badge badge-{{ $ticket->status }}">{{ \App\Helpers\TicketHelper::translateStatus($ticket->status) }}</span>
                     </div>
                 </a>
             @endforeach

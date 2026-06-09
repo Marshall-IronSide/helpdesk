@@ -33,9 +33,9 @@
         <div class="form-group">
             <label class="form-label">Priorité</label>
             <select name="priority" class="form-control">
-                <option value="low"    {{ old('priority') === 'low'    ? 'selected' : '' }}>🟢 Low — Pas urgent</option>
-                <option value="medium" {{ old('priority','medium') === 'medium' ? 'selected' : '' }}>🟡 Medium — Nécessite attention</option>
-                <option value="high"   {{ old('priority') === 'high'   ? 'selected' : '' }}>🔴 High — Urgent</option>
+                <option value="low"    {{ old('priority') === 'low'    ? 'selected' : '' }}>🟢 Basse — Non urgent</option>
+                <option value="medium" {{ old('priority','medium') === 'medium' ? 'selected' : '' }}>🟡 Moyenne — Nécessite attention</option>
+                <option value="high"   {{ old('priority') === 'high'   ? 'selected' : '' }}>🔴 Haute — Problème urgent</option>
             </select>
         </div>
 
