@@ -1,82 +1,82 @@
 # Mini HelpDesk
 
-Mini HelpDesk is a simple Laravel-based ticketing application for managing support requests. It provides a lightweight interface for creating tickets, viewing their details, adding comments, and filtering tickets by status.
+Mini HelpDesk est une application de gestion de tickets simple, basée sur Laravel, pour gérer les demandes de support. Elle offre une interface légère pour créer des tickets, consulter leurs détails, ajouter des commentaires et filtrer les tickets par statut.
 
-## Features
+## Fonctionnalités
 
-- Create, edit, and view support tickets
-- Track ticket status and priority
-- Add comments to tickets
-- Filter tickets by open or resolved status
-- French UI labels and localized date formatting
-- Authentication and basic role-aware actions for admins
+- Créer, modifier et consulter des tickets de support
+- Suivre le statut et la priorité des tickets
+- Ajouter des commentaires aux tickets
+- Filtrer les tickets par statut ouvert ou résolu
+- Libellés de l’interface en français et formatage des dates localisé
+- Authentification et actions de base adaptées aux administrateurs
 
-## Tech Stack
+## Stack technique
 
 - Laravel 12
 - PHP 8.2+
-- Blade templates
-- MySQL / SQLite-compatible database setup
-- Vite for frontend assets
+- Templates Blade
+- Configuration de base de données compatible MySQL / SQLite
+- Vite pour les assets frontend
 
 ## Installation
 
-1. Clone the repository
+1. Cloner le dépôt
    ```bash
    git clone https://github.com/Marshall-IronSide/helpdesk.git
    cd helpdesk
    ```
 
-2. Install PHP dependencies
+2. Installer les dépendances PHP
    ```bash
    composer install
    ```
 
-3. Install frontend dependencies
+3. Installer les dépendances frontend
    ```bash
    npm install
    ```
 
-4. Create your environment file
+4. Créer le fichier d’environnement
    ```bash
    cp .env.example .env
    ```
 
-5. Generate the application key
+5. Générer la clé de l’application
    ```bash
    php artisan key:generate
    ```
 
-6. Run the migrations
+6. Exécuter les migrations
    ```bash
    php artisan migrate
    ```
 
-7. Build the assets
+7. Compiler les assets
    ```bash
    npm run build
    ```
 
-8. Start the development server
+8. Démarrer le serveur de développement
    ```bash
    php artisan serve
    ```
 
-## Usage
+## Utilisation
 
-- Open the application in your browser
-- Register or log in
-- Create a new ticket from the dashboard
-- Manage ticket status and comments
+- Ouvrir l’application dans votre navigateur
+- S’inscrire ou se connecter
+- Créer un nouveau ticket depuis le tableau de bord
+- Gérer le statut des tickets et les commentaires
 
-## Testing
+## Tests
 
-Run the test suite with:
+Exécuter la suite de tests avec :
 
 ```bash
 php artisan test
 ```
 
-## License
+## Licence
 
-This project is open-source and available under the MIT License.
+Ce projet est open source et disponible sous licence MIT.
